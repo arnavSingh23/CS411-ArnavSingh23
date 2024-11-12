@@ -113,6 +113,13 @@ get_random_number() {
   print_json "$response"
 }
 
+# Battle Leaderboard Function
+get_battle_leaderboard() {
+  echo "Retrieving battle leaderboard..."
+  response=$(curl -s "$BASE_URL/battle/leaderboard")
+  print_json "$response"
+}
+
 # Start Smoketest Sequence
 
 echo "Starting meal_max smoketest..."
@@ -137,6 +144,9 @@ prepare_battle '{"meal_id": 2}'
 prepare_battle '{"meal_id": 3}'
 start_battle
 get_battle_stats
+
+# New Leaderboard Check
+get_battle_leaderboard
 
 # Kitchen Management Tests - Updating stats multiple times
 update_meal_stats 1 "win"
